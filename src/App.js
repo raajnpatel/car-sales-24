@@ -11,7 +11,7 @@ import { removeFeature, buyFeature } from "./actions";
 const App = (props) => {
     console.log(props);
     // passing initial state (state) to props so that state works throughout the components
-    const {state} = props;
+    const {state, buyFeature, removeFeature } = props;
 
 
 
@@ -35,4 +35,4 @@ const mapStateToProps = (state) => {
     };
 };
 
-export default connect(mapStateToProps, null)(App);
+export default connect(mapStateToProps, {buyFeature, removeFeature})(App);
