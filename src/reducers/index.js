@@ -22,6 +22,34 @@ const initialState = {
 const reducer = (state = initialState, action) => {
     console.log("action", action);
     switch(action.type) {
+        case "BUY_FEATURE":
+            // If the feature ID equals the feature ID that was clicked, it will not be added.
+            if(state.car.features.find(feature => feature.id === action.payload.id)) {
+                return state;
+            } else {
+                return {
+                    // Returns state first
+                    ...state,
+                    // Our action is just updating the feature so we need to get into features
+                    car: {
+                        ...state.car,
+                        features: [...state.car.features, action.payload]
+                    }
+
+                };
+            }
+
+        case "REMOVE_FEATURE":
+            return {
+                ...state,
+                car: {
+                    ...state.car,
+                    features: state.car.features.filter(feature => (
+                        feature.id !== action.payload.id
+                    ))
+                }
+            };
+
         default:
             return state;
     }
